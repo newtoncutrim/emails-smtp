@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,13 +13,13 @@ use Illuminate\Queue\SerializesModels;
 class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    protected $user;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -36,9 +37,10 @@ class RegisterMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            view: 'Mail.registerMail',
-        );
+
+
+        return (new Content())->view('Mail.registerMail')->with(['nome' => $this->user->name]);
+
     }
 
     /**

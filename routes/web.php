@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/enviar-email', [AuthController::class, 'sendMail']);
+
+Route::get('/get', [AuthController::class, 'getApi']);
