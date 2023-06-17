@@ -20,9 +20,7 @@ class RegisterMail extends Mailable
      */
     public function __construct(User $user)
     {
-        $this->subject('Meu email de teste');
-        $this->from('reply@gmail.com', 'Reply Bot');
-        $this->replyTo('newtonplay007@gmail.com');
+
 
         $this->user = $user;
     }
@@ -42,7 +40,9 @@ class RegisterMail extends Mailable
      */
     public function content(): Content
     {
-
+        $this->subject('Meu email de teste');
+        $this->from('reply@gmail.com', 'Reply Bot');
+        $this->replyTo('newtonplay007@gmail.com');
 
         return (new Content())->view('Mail.registerMail')->with(['nome' => $this->user->name]);
 
