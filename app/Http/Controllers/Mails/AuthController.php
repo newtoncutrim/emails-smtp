@@ -16,11 +16,11 @@ class AuthController extends Controller
         $name->name = ' newton';
         $registerMail = new RegisterMail($name);
 
-        return $registerMail;
-        /* for($i = 0; $i < 1; $i++){
-            $teste = Mail::to('newtonplay007@gmail.com')->send($registerMail);
+        /*return $registerMail; */
+        for($i = 0; $i < 1; $i++){
+            Mail::to('newtonplay007@gmail.com')->cc('outro@gmail.com')->bcc('outro2@gmail.com')->send($registerMail);
 
-        } */
+        }
 
     }
 

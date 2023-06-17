@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -19,6 +20,10 @@ class RegisterMail extends Mailable
      */
     public function __construct(User $user)
     {
+        $this->subject('Meu email de teste');
+        $this->from('reply@gmail.com', 'Reply Bot');
+        $this->replyTo('newtonplay007@gmail.com');
+
         $this->user = $user;
     }
 
@@ -50,6 +55,9 @@ class RegisterMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        $fileName = public_path('404.png');
+        return [
+            Attachment::fromPath($fileName)->as('404.png'),
+        ];
     }
 }
